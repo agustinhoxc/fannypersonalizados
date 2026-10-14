@@ -99,3 +99,6 @@
 .pdp-skeleton { min-height: 70vh; }
 [data-product-root] > .container { padding-top: var(--space-5); }
 .page-search input::-webkit-search-cancel-button { display: none; }
+.pdp__service { list-style: none; display: grid; gap: 8px; padding: var(--space-4) 0 0; border-top: 1px solid var(--color-border); font-size: var(--text-sm); color: var(--color-text-muted); }
+.pdp__service li { display: flex; gap: 10px; align-items: flex-start; }
+.pdp__service .icon { width: 18px; height: 18px; color: var(--color-accent); margin-top: 2px; }

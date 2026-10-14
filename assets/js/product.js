@@ -125,6 +125,13 @@ function bindGallery(root, product) {
   }
 }
 
+function serviceHTML(product) {
+  const b = STORE_CONFIG.business || {};
+  const items = [b.pickup, b.deliveryInfo, b.payment ? `Pagamento: ${b.payment}` : null, product.personalizable ? b.customLeadTime : null].filter(Boolean);
+  if (!items.length) return "";
+  return `<ul class="pdp__service" aria-label="Retirada, entrega e pagamento">${items.map((t) => `<li>${ICON.check}<span>${esc(t)}</span></li>`).join("")}</ul>`;
+}
+
 function notFound(root) {
   document.title = `Produto não encontrado | ${STORE_CONFIG.name}`;
   root.innerHTML = `<div class="container"><div class="empty empty--wide empty--page">
@@ -155,6 +162,9 @@ export function initProduct(root) {
   const img = mainImage(product);
   setMeta(product, img);
   const unavailable = product.availability === "indisponivel";
+  const allValues = (product.options || []).flatMap((o) => o.values || []);
+  const hasArt = allValues.some((v) => /foto|arte|ilustra/i.test(v.value));
+  const hasQuote = product.price === null || allValues.some((v) => v.quote);
 
   root.innerHTML = `<div class="container">
   <nav class="crumbs" aria-label="Você está em"><ol>
@@ -188,12 +198,13 @@ export function initProduct(root) {
         <p class="form-alert" data-form-alert role="alert" hidden></p>
         <a class="btn btn--wa btn--block" data-wa target="_blank" rel="noopener" href="#">${ICON.whatsapp}<span>Consultar pelo WhatsApp</span></a>
       </form>
+      ${serviceHTML(product)}
       ${product.details?.length ? `<section class="pdp__details"><h2>Características</h2><ul>${product.details.map((d) => `<li>${esc(d)}</li>`).join("")}</ul></section>` : ""}
       ${product.compatibility?.length ? `<section class="pdp__details"><h2>Compatibilidade confirmada</h2><ul>${product.compatibility.map((d) => `<li>${esc(d)}</li>`).join("")}</ul></section>` : ""}
       ${product.personalizable ? `<section class="pdp__details pdp__details--custom"><h2>Como funciona a personalização</h2><ol>
-        <li>Escolha as opções e descreva o que deseja.</li>
-        <li>Envie o pedido pelo WhatsApp. Fotos e artes são enviadas na própria conversa.</li>
-        <li>A loja confirma o resultado, o prazo e o valor antes de produzir.</li></ol></section>` : ""}
+        <li>Escolha as opções e escreva o nome, as iniciais ou a frase.</li>
+        <li>Envie o pedido pelo WhatsApp.${hasArt ? " Fotos e artes são enviadas na própria conversa." : ""}</li>
+        <li>A loja confirma ${hasQuote ? "o resultado, o prazo e o valor" : "o resultado e o prazo"} antes de produzir.</li></ol></section>` : ""}
     </div>
   </div>
   <section class="related" data-related hidden><h2 class="section-title">Mais em ${esc(cat?.navLabel || "acessórios")}</h2><div class="grid grid--row" data-related-grid></div></section>
@@ -242,7 +253,9 @@ export function initProduct(root) {
     const { unit, pending } = unitPrice(product, sel);
     const priceEl = $("[data-price]", root);
     if (!pending && typeof product.price === "number") {
-      priceEl.innerHTML = `<span class="price"><span class="price__now">${formatPrice(unit)}</span>${typeof product.promoPrice === "number" ? ` <s class="price__old">${formatPrice(product.price)}</s>` : ""}</span>`;
+      const base = typeof product.promoPrice === "number" ? product.promoPrice : product.price;
+      const addons = unit - base;
+      priceEl.innerHTML = `<span class="price"><span class="price__now">${formatPrice(unit)}</span>${typeof product.promoPrice === "number" && product.promoPrice < product.price ? ` <s class="price__old">${formatPrice(product.price + addons)}</s>` : ""}</span>${addons > 0 ? ` <span class="price__note">com personalização</span>` : ""}`;
     } else if (pending && typeof product.price === "number") {
       priceEl.innerHTML = `${priceHTML(product)} <span class="pending">+ personalização sob orçamento</span>`;
     }

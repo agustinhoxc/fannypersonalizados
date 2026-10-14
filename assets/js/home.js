@@ -95,6 +95,6 @@ export function initHome() {
   initHeroVideo();
   fillRow("[data-home-featured]", PRODUCTS.filter((p) => p.featured), 8);
   fillRow("[data-home-new]", PRODUCTS.filter((p) => p.isNew));
-  fillRow("[data-home-offers]", hasOffers() ? PRODUCTS.filter((p) => typeof p.promoPrice === "number") : []);
+  fillRow("[data-home-offers]", hasOffers() ? PRODUCTS.filter((p) => typeof p.promoPrice === "number" && !p.featured) : [], 4);
   fillRow("[data-home-kits]", productsInCategory("kits"), 4);
 }

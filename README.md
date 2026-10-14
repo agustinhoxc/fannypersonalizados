@@ -10,7 +10,7 @@ Site estático em HTML, CSS e JavaScript puro, sem servidor, sem banco de dados 
 
 Ele foi feito para ser publicado no **GitHub Pages**.
 
-> **Status atual: catálogo de demonstração.** Os produtos cadastrados são exemplos baseados na vitrine que aparece no vídeo da loja. Nenhum preço foi inventado: todos aparecem como "Preço sob consulta". O site mostra um aviso de "catálogo em montagem" até você trocar `catalogStatus` para `"oficial"` (veja a seção [Do modo demonstração ao catálogo oficial](#do-modo-demonstração-ao-catálogo-oficial)).
+> **Status: catálogo oficial.** Os 12 produtos, preços, promoções, fotos e dados da loja vêm da planilha preenchida pela loja (`fanny-planilha-produtos.xlsx`, outubro de 2026). O site está configurado para o domínio **fannypersonalizados.com.br**.
 
 ---
 
@@ -25,7 +25,7 @@ Ele foi feito para ser publicado no **GitHub Pages**.
 7. [Categorias](#categorias)
 8. [Fotos, vídeo e personagem](#fotos-vídeo-e-personagem)
 9. [Cores e identidade visual](#cores-e-identidade-visual)
-10. [Do modo demonstração ao catálogo oficial](#do-modo-demonstração-ao-catálogo-oficial)
+10. [Atualizar o catálogo depois](#atualizar-o-catálogo-depois)
 11. [Como funciona o pedido pelo WhatsApp](#como-funciona-o-pedido-pelo-whatsapp)
 12. [Testes](#testes)
 13. [Dados comerciais pendentes](#dados-comerciais-pendentes)
@@ -103,7 +103,17 @@ Também funciona com `npx serve .` ou com a extensão "Live Server" do VS Code.
 4. Em um ou dois minutos, o site estará em `https://SEU-USUARIO.github.io/fanny-acessorios/`.
 5. Abra `assets/js/config.js` e troque `siteUrl` pelo endereço real, sem a barra no final. Depois rode `node tools/build.mjs` e envie de novo (`git add . && git commit -m "siteUrl" && git push`). Isso corrige o `sitemap.xml`, o `robots.txt` e as tags de compartilhamento.
 
-**Domínio próprio:** em Settings → Pages → Custom domain, informe o domínio e atualize `siteUrl`.
+**Domínio próprio (fannypersonalizados.com.br):** o projeto já inclui o arquivo `CNAME` com o domínio. Falta só apontar o DNS no registro.br (ou onde o domínio foi comprado):
+
+| Tipo | Nome | Valor |
+|------|------|-------|
+| A | @ (raiz) | 185.199.108.153 |
+| A | @ (raiz) | 185.199.109.153 |
+| A | @ (raiz) | 185.199.110.153 |
+| A | @ (raiz) | 185.199.111.153 |
+| CNAME | www | SEU-USUARIO.github.io |
+
+Depois, em **Settings → Pages**, confira se o domínio aparece em *Custom domain* e marque **Enforce HTTPS** quando a opção liberar (pode levar algumas horas). Enquanto o DNS não estiver pronto, o endereço `github.io` redireciona para o domínio e não abre; se quiser testar antes no `github.io`, apague temporariamente o arquivo `CNAME`. **Não apague o `CNAME` nas próximas atualizações.**
 
 Todos os caminhos do site são relativos. Por isso ele funciona tanto em `usuario.github.io/fanny-acessorios/` quanto em um domínio próprio. O arquivo `.nojekyll` evita que o GitHub processe os arquivos.
 
@@ -257,7 +267,7 @@ node tools/build.mjs
 - Use imagens quadradas, de pelo menos 800 × 800 px, no formato `.webp` ou `.jpg`.
 - `credit: "loja"` mostra a legenda "Foto da vitrine da loja", e `"ilustrativa"` mostra "Imagem ilustrativa".
 - Produtos sem foto usam automaticamente o ícone da categoria, com a etiqueta "Foto em breve".
-- As fotos atuais foram recortadas do vídeo da loja. Substitua-as por fotos de cada produto assim que possível.
+- As fotos dos produtos vieram do .zip enviado pela loja e foram recortadas em formato quadrado. As fotos das categorias Copos, Garrafas e Capas são do vídeo da loja.
 
 **Vídeo do hero (`assets/video/`)**
 
@@ -289,7 +299,7 @@ Para trocar o vídeo:
 
 Para trocar o personagem, substitua os arquivos ou ajuste `config.js → mascot`. Para remover o personagem do site inteiro, use `mascot.enabled: false` e rode o gerador.
 
-> ⚠️ **Atenção aos direitos do personagem.** O desenho atual é uma fan art do Doug Funnie, personagem da série *Doug*, hoje pertencente à Disney. A ilustração está assinada por outro artista ("Thiago S.F. 2018"). Usar esse desenho como mascote de uma loja comercial pode gerar problemas de direito autoral e de marca. Antes de publicar, confirme se há autorização. Se não houver, o ideal é encomendar um personagem original da Fanny. A troca leva poucos minutos, porque o personagem está configurado em um único lugar.
+> **Personagem:** a loja informou na planilha que tem autorização de uso do desenho. A ilustração é assinada por "Thiago S.F. 2018"; mantenha a assinatura visível.
 
 ---
 
@@ -310,12 +320,13 @@ As fontes são a **Noto Serif Display Itálica** (títulos, ecoando o letreiro d
 
 ---
 
-## Do modo demonstração ao catálogo oficial
+## Atualizar o catálogo depois
 
-1. Substitua os produtos de exemplo pelos reais em `products.js`, com `demo: false`, preços reais (ou `null`) e fotos reais.
-2. Em `config.js`, troque `catalogStatus: "demonstracao"` por `catalogStatus: "oficial"`. Isso remove o aviso "Catálogo em montagem" e os selos "Exemplo".
-3. Atualize `siteUrl` e os dados de `business` que forem confirmados.
-4. Rode `node tools/build.mjs` e publique.
+1. Edite `assets/js/products.js` (preço, promoção, foto, novo produto). Os produtos de copos, canecas e garrafas usam o atalho `drinkwareOptions(5.99)` (acréscimo fixo por unidade) ou `drinkwareOptions("orcamento")` (personalização com valor combinado no WhatsApp).
+2. Coloque as fotos novas em `assets/img/products/`, quadradas e com fundo liso.
+3. Dados da loja (endereço, horário, entrega, pagamento, trocas) ficam em `config.js → business`.
+4. Rode `node tools/build.mjs` se mudou categorias ou dados da loja, e publique.
+5. O modo `catalogStatus: "demonstracao"` continua disponível para testes; o site está em `"oficial"`.
 
 ---
 
@@ -343,12 +354,28 @@ python3 -m http.server 8766
 python3 fanny-acessorios/tools/tests/e2e.py
 ```
 
-Os testes de cálculo injetam preços **fictícios** apenas no navegador de teste, sem alterar o site. O resultado da última execução fica em `tools/tests/ultimo-resultado.json`.
+Os testes usam o catálogo real. O resultado da última execução fica em `tools/tests/ultimo-resultado.json`.
 
-### Checklist executado (48/48 verificações aprovadas)
+### Checklist executado com o catálogo real (36/36 verificações aprovadas)
 
 | Teste | O que foi verificado | Resultado |
 |-------|----------------------|-----------|
+| Catálogo | 12 produtos da planilha; sem aviso de demonstração; cards com preço promocional, preço riscado e selo "Oferta" | ✔ |
+| Ofertas e destaques | Página Ofertas com os 8 produtos em promoção; home com os 7 destaques marcados "Sim" | ✔ |
+| Validação | Sem responder "Deseja personalizar?" não adiciona; preço na página soma a personalização (R$ 20,00 + R$ 5,99 = R$ 25,99) | ✔ |
+| A — Compra simples | Copo liso entra pelo preço promocional de R$ 20,00 | ✔ |
+| B/C/D — Carrinho | Copos e canecas juntos; mesmo produto liso e personalizado em linhas separadas; nomes preservados; total de R$ 207,97 conferido | ✔ |
+| E/F/G | Diminuir quantidade, recarregar a página e remover item recalculam corretamente | ✔ |
+| H — Sob orçamento | Garrafa mostra "R$ 50,00 + personalização a confirmar"; capinha sob consulta; sem total final enganoso | ✔ |
+| I — WhatsApp | Número 5531992919133; mensagem com itens, opções, valores, recebimento, pagamento e observações; retirada na loja não menciona frete | ✔ |
+| J — Integridade | Mostra "pedido preparado", mantém o carrinho e não afirma recebimento | ✔ |
+| Dados da loja | Endereço, horário, entrega, pagamento, trocas e prazo dos personalizados no contato, no rodapé e na página de produto; canonical no domínio | ✔ |
+| Busca e filtros | Busca por "caneca" e sem acento; filtro por tipo; ordenação por menor preço | ✔ |
+| K — Celular (390 px) | Menu, compra da capinha e envio; botão não coberto pela barra inferior; sem rolagem horizontal | ✔ |
+| L — Publicação | Páginas, links, arquivos e as 12 fotos respondem 200 em subpasta | ✔ |
+| Responsivo | Sem rolagem horizontal nas larguras de 320 a 1920 px | ✔ |
+
+-------|----------------------|-----------|
 | Validação | Formulário sem campos obrigatórios mostra erros e não adiciona | ✔ |
 | A — Compra simples | Gaveta abre; 1 × R$ 49,90 = R$ 49,90 | ✔ |
 | B — Várias categorias | Copos, canecas, garrafas e capas no mesmo carrinho | ✔ |
@@ -370,19 +397,16 @@ Os testes de cálculo injetam preços **fictícios** apenas no navegador de test
 
 ---
 
-## Dados comerciais pendentes
+## Dados da loja cadastrados
 
-O site está pronto para receber estas informações. Enquanto não forem fornecidas, nada é inventado.
+- Endereço: Shopping Oiapoque, Box M19/20, Belo Horizonte, MG. Horário: das 8h às 20h.
+- Retirada na loja e entrega para todo o Brasil, com frete combinado pelo WhatsApp.
+- Pagamento: dinheiro, Pix e cartão de débito ou crédito. Trocas de acordo com o CDC.
+- Personalizados: até 15 unidades com prazo imediato; sem quantidade mínima.
+- Domínio: fannypersonalizados.com.br.
 
-- [ ] **Lista real de produtos**, com nomes, tipos, cores, modelos e compatibilidades.
-- [ ] **Preços.** Hoje, todos os produtos aparecem como "sob consulta".
-- [ ] **Fotos** de cada produto. Hoje, as fotos são recortes do vídeo ou ícones.
-- [ ] **Marcas revendidas** e se a loja é revendedora autorizada de alguma (por exemplo, Stanley).
-- [ ] **Especificações** confirmadas: capacidade de copos, canecas e garrafas, materiais e modelos de celular atendidos pelas capas.
-- [ ] **Modalidades de personalização** oferecidas, prazos e regras de preço (acréscimo fixo ou orçamento).
-- [ ] **Endereço da loja** e **horário de funcionamento**, para o rodapé, a página de contato e o SEO local.
-- [ ] **Política de trocas**, **entrega ou retirada** e **formas de pagamento**.
-- [ ] **Promoções reais**. A seção e a página "Ofertas" aparecem sozinhas quando houver `promoPrice`.
-- [ ] **Endereço final do site** (`siteUrl`), para o sitemap, o canonical e o Open Graph.
-- [ ] **Personagem:** autorização de uso ou um personagem original (veja o aviso acima).
-- [ ] **Cor oficial da marca**, se houver. A atual vem do letreiro do vídeo.
+Pontos que ainda podem melhorar:
+
+- [ ] **Fotos próprias.** Algumas fotos enviadas mostram a marca Stanley e uma delas (cuia) tem a marca d'água de outra loja ("IZE TEC"). Troque por fotos tiradas na loja, com o mesmo nome de arquivo, e não é preciso mexer em mais nada.
+- [ ] **Dias de funcionamento** junto com o horário (ex.: "Seg. a sáb., das 8h às 20h").
+- [ ] **Cores de cada produto**, se quiser que o cliente escolha clicando em vez de digitar.

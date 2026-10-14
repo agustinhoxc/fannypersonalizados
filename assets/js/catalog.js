@@ -130,6 +130,7 @@ export function initListing(root) {
   const scopeProducts = () => {
     if (scope === "category") return productsInCategory(catId);
     if (scope === "search") return state.q ? searchProducts(state.q) : [];
+    if (scope === "offers") return PRODUCTS.filter((p) => typeof p.promoPrice === "number" && typeof p.price === "number" && p.promoPrice < p.price);
     // catálogo: ordem por categoria, destaques primeiro dentro de cada uma
     const order = new Map(CATEGORIES.map((c) => [c.id, c.order]));
     return [...PRODUCTS].sort((a, b) => (order.get(a.category) - order.get(b.category)) || (b.featured ? 1 : 0) - (a.featured ? 1 : 0));

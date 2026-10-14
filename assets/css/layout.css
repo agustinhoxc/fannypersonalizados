@@ -295,7 +295,7 @@
 .values .mega__icon { grid-row: span 2; }
 .values span { color: var(--color-text-muted); font-size: var(--text-sm); }
 
-.contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4); }
 .contact-card {
   background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card);
   padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start;
@@ -303,7 +303,7 @@
 }
 .contact-card h2 { font-size: var(--text-lg); }
 .contact-card p { color: var(--color-text-muted); }
-.contact-card__big { font-size: var(--text-xl); font-weight: 600; color: var(--color-text) !important; letter-spacing: -0.01em; }
+.contact-card__big { font-size: var(--text-lg); font-weight: 600; color: var(--color-text) !important; letter-spacing: -0.01em; }
 .contact-aside { display: flex; gap: var(--space-5); align-items: center; margin-top: var(--space-7); background: var(--color-surface-2); border-radius: var(--radius-card); padding: var(--space-5) var(--space-6); }
 .contact-aside img { width: 96px; flex: none; }
 

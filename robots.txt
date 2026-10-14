@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /carrinho/
 
-Sitemap: https://SEU-USUARIO.github.io/fanny-acessorios/sitemap.xml
+Sitemap: https://fannypersonalizados.com.br/sitemap.xml

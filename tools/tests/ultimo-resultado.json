@@ -1,93 +1,88 @@
 [
  {
-  "teste": "Formulário vazio mostra erros e não adiciona",
+  "teste": "Catálogo lista os 12 produtos da planilha",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Gaveta abre após adicionar",
+  "teste": "Sem aviso de demonstração nem selo 'Exemplo'",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Subtotal correto (1 × R$ 49,90)",
+  "teste": "Card mostra preço promocional e preço anterior (R$ 20,00 / R$ 25,00) com selo Oferta",
   "ok": true,
-  "detalhe": "Seu carrinho\nGarrafa colorida com alça\nCor\nVerde-água\n\nR$ 49,90 cada\n\nEditar\nRemover\n\nR$ 49,90\n\nUnidades\n1\nTotal dos produtos\nR$ 49,90\nRevisar e enviar pedido\nContinuar comprando"
+  "detalhe": "Copos térmicos\n\nCopo Térmico Lagoinha com Tampa 360 ml\nR$ 20,00 R$ 25,00\nPersonalizável\nOferta"
  },
  {
-  "teste": "4 produtos de categorias diferentes no carrinho",
+  "teste": "Página Ofertas mostra só os 8 produtos com promoção",
+  "ok": true,
+  "detalhe": "['Copo Térmico Lagoinha com Tampa 360 ml', 'Cuia Térmica com Tampa 360 ml', 'Caneca Térmica com Tampa 360 ml', 'Canecão Térmico 720 ml', 'Garrafa 500 ml com Temperatura', 'Garrafa 800 ml com Protetor de Borracha', 'Garrafa 800 ml', 'Garrafa 600 ml']"
+ },
+ {
+  "teste": "Destaques da home = produtos marcados 'Sim' na planilha (7)",
+  "ok": true,
+  "detalhe": "['Copo Térmico Lagoinha com Tampa 360 ml', 'Xícara Térmica com Tampa 360 ml', 'Caneca Térmica com Tampa 360 ml', 'Garrafa 500 ml com Temperatura', 'Garrafa 800 ml com Protetor de Borracha', 'Garrafa 350 ml', 'Capinha Personalizada para Celular']"
+ },
+ {
+  "teste": "Seção de ofertas aparece na home",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Personalização preservada (modelo, cor, texto)",
+  "teste": "Sem escolher 'Deseja personalizar?' não adiciona",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Opção oculta não vai para o carrinho (copo sem personalização)",
+  "teste": "Preço na página soma a personalização (R$ 25,99, riscado R$ 30,99)",
+  "ok": true,
+  "detalhe": "R$ 25,99 R$ 30,99 com personalização"
+ },
+ {
+  "teste": "Copo liso entra pelo preço promocional R$ 20,00",
+  "ok": true,
+  "detalhe": "u carrinho\nCopo Térmico Lagoinha com Tampa 360 ml\nPersonalização\nNão (liso)\n\nR$ 20,00 cada\n\nEditar\nRemover\n\nR$ 20,00\n\nUnidades\n1\nTotal dos produtos\nR$ 20,00\nRevisar e enviar pedido\nContinuar comprando"
+ },
+ {
+  "teste": "Mesmo copo liso e personalizado viram linhas separadas",
+  "ok": true,
+  "detalhe": "[{'id': 'copo-termico-lagoinha-360ml', 'options': {'personalizar': 'Não'}, 'qty': 1, 'key': 'copo-termico-lagoinha-360ml::[[\"personalizar\",\"Não\"]]', 'addedAt': 1792004841437}, {'id': 'copo-termico-lagoinha-360ml', 'options': {'personalizar': 'Sim', 'estilo': 'Nome', 'texto': 'Ana'}, 'qty': 2, 'key': 'copo-termico-lagoinha-360ml::[[\"estilo\",\"Nome\"],[\"personalizar\",\"Sim\"],[\"texto\",\"Ana\"]]', 'addedAt': 1792004842071}]"
+ },
+ {
+  "teste": "Total correto com promoções e acréscimos (R$ 207,97)",
+  "ok": true,
+  "detalhe": "Unidades\n8\nTotal dos produtos\nR$ 207,97\n\nRetire na loja ou receba em todo o Brasil. O frete, quando houver, é combinado pelo WhatsApp."
+ },
+ {
+  "teste": "Personalização preservada no carrinho (Ana, Bia)",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Duas configurações distintas viram duas linhas",
-  "ok": true,
-  "detalhe": "[{'id': 'capa-personalizada', 'options': {'marca': 'Samsung', 'modelo': 'Galaxy A15', 'base': 'Colorida', 'cor': 'Rosa-chiclete', 'estilo': 'Nome', 'texto': 'Maria'}, 'qty': 2, 'key': 'capa-personalizada::[[\"base\",\"Colorida\"],[\"cor\",\"Rosa-chiclete\"],[\"estilo\",\"Nome\"],[\"marca\",\"Samsung\"],[\"modelo\",\"Galaxy A15\"],[\"texto\",\"Maria\"]]', 'addedAt': 1792001231812}, {'id': 'capa-personalizada', 'options': {'marca': 'Samsung', 'modelo': 'Galaxy A15', 'base': 'Colorida', 'cor': 'Rosa-chiclete', 'estilo': 'Nome', 'texto': 'João'}, 'qty': 1, 'key': 'capa-personalizada::[[\"base\",\"Colorida\"],[\"cor\",\"Rosa-chiclete\"],[\"estilo\",\"Nome\"],[\"marca\",\"Samsung\"],[\"modelo\",\"Galaxy A15\"],[\"texto\",\"João\"]]', 'addedAt': 1792001232563}]"
- },
- {
-  "teste": "Configuração idêntica soma quantidade (Maria = 2)",
+  "teste": "Diminuir quantidade recalcula (R$ 187,97)",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Aumentar para 3 → subtotal R$ 149,70",
+  "teste": "Carrinho mantém os itens após recarregar",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Diminuir para 2 → subtotal R$ 99,80",
+  "teste": "Remover recalcula (R$ 152,97)",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Quantidade inválida é corrigida (-5 → 1, 2.7 → 2)",
+  "teste": "Mostra subtotal conhecido e itens a confirmar, sem total final",
   "ok": true,
-  "detalhe": "1,2"
+  "detalhe": "Unidades\n8\nSubtotal com preço definido\nR$ 152,97\n\n2 itens têm valor a confirmar pela loja, por isso não mostramos um total final.\n\nRetire na loja ou receba em todo o Brasil. O frete, quando houver, é combinado pelo WhatsApp."
  },
  {
-  "teste": "Não permite quantidade abaixo de 1",
+  "teste": "Garrafa mostra R$ 50,00 + personalização a confirmar",
   "ok": true,
-  "detalhe": ""
- },
- {
-  "teste": "Total geral correto (R$ 339,20)",
-  "ok": true,
-  "detalhe": "Unidades\n8\nTotal dos produtos\nR$ 339,20\n\nEntrega e pagamento são combinados no atendimento."
- },
- {
-  "teste": "Carrinho mantém itens após recarregar",
-  "ok": true,
-  "detalhe": ""
- },
- {
-  "teste": "Contador do cabeçalho reflete as unidades",
-  "ok": true,
-  "detalhe": ""
- },
- {
-  "teste": "Total recalculado após remover (R$ 279,40)",
-  "ok": true,
-  "detalhe": "Unidades\n6\nTotal dos produtos\nR$ 279,40\n\nEntrega e pagamento são combinados no atendimento."
- },
- {
-  "teste": "Mostra subtotal conhecido e aviso de valor a confirmar, sem total final",
-  "ok": true,
-  "detalhe": "Unidades\n7\nSubtotal com preço definido\nR$ 279,40\n\n1 item tem valor a confirmar pela loja, por isso não mostramos um total final.\n\nEntrega e pagamento são combinados no atendimento."
- },
- {
-  "teste": "Editar opções a partir do carrinho substitui o item",
-  "ok": true,
-  "detalhe": ""
+  "detalhe": "Garrafa 600 ml\nPersonalização\nSim\nTipo de personalização\nNome\nTexto\nLéo\n\nR$ 50,00 cada + personalização a confirmar\n\nEditar\nRemover\n\nA confirmar"
  },
  {
   "teste": "Link usa o número 5531992919133",
@@ -95,89 +90,64 @@
   "detalhe": "https://wa.me/5531992919133?text=Ol%C3%A1%2C%20Fanny!%20Gost"
  },
  {
-  "teste": "Mensagem contém itens, opções, quantidades e observações",
+  "teste": "Mensagem completa (itens, opções, preços, recebimento, pagamento)",
   "ok": true,
   "detalhe": "[]"
  },
  {
-  "teste": "Mensagem não inventa frete/desconto",
+  "teste": "Retirada na loja não pede frete",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Texto codificado (sem espaços/quebras crus na URL)",
+  "teste": "Mostra 'pedido preparado' e mantém o carrinho",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Mostra que o pedido foi PREPARADO e precisa ser enviado",
+  "teste": "Não afirma que a loja recebeu",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Não afirma que a loja recebeu/confirmou",
+  "teste": "Contato mostra endereço, horário, entrega, pagamento e trocas",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Carrinho NÃO é limpo automaticamente",
+  "teste": "Rodapé mostra endereço e WhatsApp novo",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Sugestões aparecem no cabeçalho",
+  "teste": "Página de produto mostra retirada, entrega e pagamento",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Página de busca lista resultados para 'garrafa'",
-  "ok": true,
-  "detalhe": "4"
- },
- {
-  "teste": "Estado sem resultados com saída para o WhatsApp",
+  "teste": "SEO: canonical no domínio fannypersonalizados.com.br",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Busca ignora acentos ('termica' encontra 'térmica')",
+  "teste": "Busca 'caneca' encontra xícara, caneca e canecão",
   "ok": true,
-  "detalhe": "['Garrafa térmica de tampa rosqueável', 'Garrafa térmica preta']"
+  "detalhe": "3"
  },
  {
-  "teste": "Filtro por tipo altera resultados",
+  "teste": "Busca sem acento ('termica' encontra 'Xícara Térmica')",
   "ok": true,
-  "detalhe": "4->2"
+  "detalhe": "['Xícara Térmica com Tampa 360 ml', 'Caneca Térmica com Tampa 360 ml', 'Cuia Térmica com Tampa 360 ml', 'Garrafa 500 ml com Temperatura']"
  },
  {
-  "teste": "Filtro fica na URL",
+  "teste": "Filtro por tipo nas garrafas",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Chip remove o filtro",
+  "teste": "Ordenar por menor preço (R$ 20,00 primeiro, capinha sob consulta por último)",
   "ok": true,
-  "detalhe": ""
- },
- {
-  "teste": "Filtro por cor",
-  "ok": true,
-  "detalhe": "['Garrafa térmica de tampa rosqueável']"
- },
- {
-  "teste": "Ordenação alfabética",
-  "ok": true,
-  "detalhe": "['Caneca colorida', 'Caneca personalizada', 'Capa personalizada com foto ou arte']"
- },
- {
-  "teste": "Catálogo lista os 10 produtos sem botão 'Mostrar mais' desnecessário",
-  "ok": true,
-  "detalhe": "10 True"
- },
- {
-  "teste": "Link 'Ver personalizados' filtra só personalizáveis",
-  "ok": true,
-  "detalhe": "['Copo térmico com tampa', 'Copo com canudo', 'Caneca personalizada', 'Garrafa personalizada', 'Capa personalizada com nome ou frase', 'Capa personalizada com foto ou arte']"
+  "detalhe": "R$ 20,00 Capinha Personalizada para Celular"
  },
  {
   "teste": "Sem erros de JavaScript no desktop",
@@ -185,44 +155,19 @@
   "detalhe": "[]"
  },
  {
-  "teste": "Sem preços: total 'A confirmar', sem R$ inventado",
-  "ok": true,
-  "detalhe": "Unidades\n1\nTotal\nA confirmar\n\nOs itens do carrinho têm preço sob consulta. A Fanny responde com os valores pelo WhatsApp.\n\nEntrega e pagamento são combinados no atendimento."
- },
- {
-  "teste": "Prévia da mensagem diz 'Valores: a confirmar'",
-  "ok": true,
-  "detalhe": ""
- },
- {
-  "teste": "Produto inexistente mostra página amigável",
-  "ok": true,
-  "detalhe": ""
- },
- {
-  "teste": "Barra inferior visível no celular",
-  "ok": true,
-  "detalhe": ""
- },
- {
-  "teste": "Filtros em painel no celular funcionam",
-  "ok": true,
-  "detalhe": ""
- },
- {
   "teste": "Botão de envio não fica coberto pela barra inferior",
   "ok": true,
-  "detalhe": "{'x': 41.609375, 'y': 433.078125, 'width': 306.78125, 'height': 54} {'x': 0, 'y': 780, 'width': 390, 'height': 64}"
+  "detalhe": ""
  },
  {
-  "teste": "Mensagem no celular inclui modelo e cor",
+  "teste": "Mensagem no celular inclui modelo e texto",
   "ok": true,
   "detalhe": ""
  },
  {
-  "teste": "Sem rolagem horizontal no carrinho (390 px)",
+  "teste": "Sem rolagem horizontal (390 px)",
   "ok": true,
-  "detalhe": "390"
+  "detalhe": ""
  },
  {
   "teste": "Sem erros de JavaScript no celular",
@@ -230,13 +175,8 @@
   "detalhe": "[]"
  },
  {
-  "teste": "Todas as páginas, links internos e arquivos respondem 200 (60 URLs)",
+  "teste": "Páginas, links, arquivos e 12 fotos respondem 200 (68 URLs)",
   "ok": true,
   "detalhe": "[]"
- },
- {
-  "teste": "404.html existe (GitHub Pages usa automaticamente)",
-  "ok": true,
-  "detalhe": ""
  }
 ]

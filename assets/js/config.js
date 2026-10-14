@@ -21,7 +21,7 @@ export const STORE_CONFIG = {
 
   // Endereço público do site (usado em sitemap, robots e Open Graph).
   // Troque pelo endereço real do GitHub Pages ou domínio próprio, sem barra final.
-  siteUrl: "https://SEU-USUARIO.github.io/fanny-acessorios",
+  siteUrl: "https://fannypersonalizados.com.br",
 
   currency: "BRL",
   locale: "pt-BR",
@@ -35,14 +35,14 @@ export const STORE_CONFIG = {
    *                 nos produtos marcados com demo: true.
    * "oficial":      esconde o aviso (use quando o catálogo real estiver cadastrado).
    */
-  catalogStatus: "demonstracao",
+  catalogStatus: "oficial",
 
   // Faixa de aviso no topo. Use enabled: false para desligar.
   announcement: {
     enabled: true,
-    text: "Monte o carrinho e envie o pedido pelo WhatsApp.",
-    linkLabel: "Como funciona",
-    linkHref: "carrinho/#como-funciona",
+    text: "Retire no Shopping Oiapoque ou receba em todo o Brasil.",
+    linkLabel: "Como comprar",
+    linkHref: "contato/#como-comprar",
   },
 
   // Personagem da loja. Para trocar, substitua os arquivos ou altere os caminhos.
@@ -77,18 +77,27 @@ export const STORE_CONFIG = {
     title: "PEDIDO — FANNY ACESSÓRIOS",
     closing: "Poderiam confirmar a disponibilidade e as condições para finalizar o pedido?",
     pendingNote: "Itens com valor a confirmar dependem de avaliação da loja.",
-    deliveryNote: "Entrega e forma de pagamento: a combinar no atendimento.",
+    deliveryNote: "Frete (para entregas) combinado pelo WhatsApp.",
     generalContact: "Olá, Fanny! Vim pelo site e gostaria de mais informações.",
   },
 
   contactPreferences: ["Mensagem no WhatsApp", "Ligação", "Tanto faz"],
 
+  // Opções exibidas no carrinho (todas opcionais para o cliente).
+  receiveOptions: ["Retirar na loja", "Receber por entrega"],
+  paymentOptions: ["Pix", "Dinheiro", "Cartão de débito", "Cartão de crédito"],
+
   // Dados comerciais ainda não confirmados ficam null e NÃO aparecem no site.
   business: {
-    address: null,        // ex.: "Rua Exemplo, 123 — Bairro, Cidade/UF"
-    hours: null,          // ex.: "Seg. a sáb., 9h às 18h"
-    exchangePolicy: null, // texto da política de trocas
-    deliveryInfo: null,   // texto sobre entregas/retirada
+    address: "Shopping Oiapoque, Box M19/20, Belo Horizonte, MG",
+    mapsQuery: "Shopping Oiapoque, Belo Horizonte, MG",
+    hours: "Das 8h às 20h",
+    pickup: "Retirada na loja, no Shopping Oiapoque (Box M19/20).",
+    deliveryInfo: "Entregamos para todo o Brasil. O frete é combinado pelo WhatsApp.",
+    payment: "Dinheiro, Pix e cartão de débito ou crédito.",
+    exchangePolicy: "Trocas de acordo com o Código de Defesa do Consumidor.",
+    customLeadTime: "Personalizados: até 15 unidades com prazo imediato. Acima disso, consulte estoque e prazo.",
+    minimumOrder: "Não há quantidade mínima para personalizados.",
   },
 
   // Frete não é calculado pelo site. Só configure se a loja fornecer regras reais.

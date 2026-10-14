@@ -75,7 +75,7 @@ export function describeSelections(product, selections = {}) {
     .map((o) => {
       const v = selections[o.id];
       const match = (o.values || []).find((x) => x.value === v);
-      return { id: o.id, label: o.label, value: match ? match.label.replace(/↔/g, "para") : String(v) };
+      return { id: o.id, label: o.summaryLabel || o.label, value: match ? (match.summary || match.label).replace(/↔/g, "para") : String(v) };
     });
 }
 
@@ -88,7 +88,10 @@ export function unitPrice(product, selections = {}) {
     const v = selections[opt.id];
     const match = (opt.values || []).find((x) => x.value === v);
     if (!match) continue;
-    if (match.quote) return { unit: null, pending: true, reason: `${opt.label}: ${match.label} sujeito a orçamento` };
+    if (match.quote) {
+      const what = opt.id === "personalizar" || opt.id === "estilo" ? "personalização" : `${opt.label.toLowerCase()} (${match.label})`;
+      return { unit: null, pending: true, reason: `${what} sob orçamento`, partialUnit: roundMoney(unit), pendingWhat: what };
+    }
     if (typeof match.price === "number") unit += match.price;
   }
   return { unit: roundMoney(unit), pending: false, reason: "" };
@@ -112,7 +115,7 @@ export function summarize(lines, lookup = getProduct) {
       continue;
     }
     const qty = sanitizeQty(line.qty);
-    const { unit, pending, reason } = unitPrice(product, line.options);
+    const { unit, pending, reason, partialUnit, pendingWhat } = unitPrice(product, line.options);
     const subtotal = unit === null ? null : roundMoney(unit * qty);
     if (subtotal !== null) known = roundMoney(known + subtotal);
     units += qty;
@@ -126,6 +129,8 @@ export function summarize(lines, lookup = getProduct) {
       subtotal,
       pending,
       pendingReason: reason,
+      partialUnit: partialUnit ?? null,
+      pendingWhat: pendingWhat ?? null,
     });
   }
   const pendingItems = items.filter((i) => i.pending);
@@ -146,7 +151,7 @@ export function summarize(lines, lookup = getProduct) {
 const KEY = STORE_CONFIG.cartStorageKey;
 
 function emptyState() {
-  return { v: STORE_CONFIG.cartSchemaVersion, lines: [], customer: { name: "", contact: "", notes: "" } };
+  return { v: STORE_CONFIG.cartSchemaVersion, lines: [], customer: { name: "", contact: "", receive: "", payment: "", notes: "" } };
 }
 
 function load() {

@@ -41,6 +41,19 @@ export function initCartPage(root) {
         <input id="c-name" name="name" type="text" autocomplete="given-name" maxlength="60" value="${esc(c.name)}">
       </div>
       <fieldset class="field">
+        <legend class="field__label">Como prefere receber? <span class="opt-tag">opcional</span></legend>
+        <div class="pills">${STORE_CONFIG.receiveOptions
+          .map((p) => `<label class="pill"><input type="radio" name="receive" value="${esc(p)}" ${c.receive === p ? "checked" : ""}><span>${esc(p)}</span></label>`)
+          .join("")}</div>
+        ${STORE_CONFIG.business.pickup ? `<p class="field__help">${esc(STORE_CONFIG.business.pickup)} ${esc(STORE_CONFIG.business.deliveryInfo || "")}</p>` : ""}
+      </fieldset>
+      <fieldset class="field">
+        <legend class="field__label">Forma de pagamento <span class="opt-tag">opcional</span></legend>
+        <div class="pills">${STORE_CONFIG.paymentOptions
+          .map((p) => `<label class="pill"><input type="radio" name="payment" value="${esc(p)}" ${c.payment === p ? "checked" : ""}><span>${esc(p)}</span></label>`)
+          .join("")}</div>
+      </fieldset>
+      <fieldset class="field">
         <legend class="field__label">Como prefere ser atendido? <span class="opt-tag">opcional</span></legend>
         <div class="pills">${STORE_CONFIG.contactPreferences
           .map((p) => `<label class="pill"><input type="radio" name="contact" value="${esc(p)}" ${c.contact === p ? "checked" : ""}><span>${esc(p)}</span></label>`)
@@ -48,7 +61,7 @@ export function initCartPage(root) {
       </fieldset>
       <div class="field">
         <label class="field__label" for="c-notes">Observações gerais <span class="opt-tag">opcional</span></label>
-        <textarea id="c-notes" name="notes" rows="3" maxlength="500" placeholder="Ex.: é para presente, prefiro retirar na loja">${esc(c.notes)}</textarea>
+        <textarea id="c-notes" name="notes" rows="3" maxlength="500" placeholder="Ex.: é para presente, preciso para sábado">${esc(c.notes)}</textarea>
       </div>
       <details class="preview">
         <summary>Ver a mensagem que será enviada</summary>
@@ -77,6 +90,8 @@ export function initCartPage(root) {
   const customer = () => ({
     name: form.elements.name.value,
     contact: form.querySelector('input[name="contact"]:checked')?.value || "",
+    receive: form.querySelector('input[name="receive"]:checked')?.value || "",
+    payment: form.querySelector('input[name="payment"]:checked')?.value || "",
     notes: form.elements.notes.value,
   });
 

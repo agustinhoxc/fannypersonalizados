@@ -35,6 +35,7 @@ export function tagsHTML(product) {
   const tags = [];
   if (product.personalizable) tags.push(`<span class="tag tag--custom">${ICON.sparkle}Personalizável</span>`);
   if (product.availability === "indisponivel") tags.push(`<span class="tag tag--out">Indisponível</span>`);
+  if (typeof product.promoPrice === "number" && typeof product.price === "number" && product.promoPrice < product.price) tags.push(`<span class="tag tag--sale">Oferta</span>`);
   if (product.isNew) tags.push(`<span class="tag">Novidade</span>`);
   if (product.demo && STORE_CONFIG.catalogStatus === "demonstracao") tags.push(`<span class="tag tag--demo" title="Produto de exemplo: nome, opções e disponibilidade ainda serão confirmados pela loja">Exemplo</span>`);
   return tags.join("");
@@ -101,7 +102,7 @@ export function cartItemsHTML(summary, { editable = true } = {}) {
   <div class="line__info">
     <h3 class="line__name"><a href="${productUrl(item.product.id)}">${esc(item.product.name)}</a></h3>
     ${item.details.length ? `<dl class="line__opts">${item.details.map((d) => `<div><dt>${esc(d.label)}</dt><dd>${esc(d.value)}</dd></div>`).join("")}</dl>` : ""}
-    ${item.pending ? "" : `<p class="line__unit">${formatPrice(item.unit)} cada</p>`}
+    ${item.pending ? (item.partialUnit !== null ? `<p class="line__unit">${formatPrice(item.partialUnit)} cada + ${esc(item.pendingWhat)} a confirmar</p>` : "") : `<p class="line__unit">${formatPrice(item.unit)} cada</p>`}
     ${editable ? `<div class="line__actions">
       <div class="stepper" role="group" aria-label="Quantidade de ${esc(item.product.name)}">
         <button type="button" class="stepper__btn" data-act="dec" aria-label="Diminuir quantidade" ${item.qty <= 1 ? "disabled" : ""}>${ICON.minus}</button>
@@ -129,7 +130,7 @@ export function totalsHTML(summary) {
     rows.push(`<div class="totals__row totals__row--main"><span>Total</span><strong class="pending">A confirmar</strong></div>`);
     rows.push(`<p class="totals__note">Os itens do carrinho têm preço sob consulta. A Fanny responde com os valores pelo WhatsApp.</p>`);
   }
-  rows.push(`<p class="totals__note">Entrega e pagamento são combinados no atendimento.</p>`);
+  rows.push(`<p class="totals__note">Retire na loja ou receba em todo o Brasil. O frete, quando houver, é combinado pelo WhatsApp.</p>`);
   return rows.join("");
 }
 

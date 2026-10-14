@@ -227,7 +227,7 @@ written.push(
     pageType: "home",
     current: "home",
     title: C.name,
-    description: "Copos, canecas, garrafas e capas de celular personalizadas. Escolha, personalize e envie seu pedido para a Fanny pelo WhatsApp.",
+    description: "Copos, canecas e garrafas térmicas e capinhas personalizadas no Shopping Oiapoque, em Belo Horizonte. Entregamos para todo o Brasil. Peça pelo WhatsApp.",
     extraHead: `<link rel="preload" as="image" href="assets/img/hero/hero-poster.webp" media="(min-width: 768px)">
 <link rel="preload" as="image" href="assets/img/hero/hero-poster-1280.webp" media="(max-width: 767px)">
 <script type="application/ld+json">${JSON.stringify({
@@ -238,7 +238,8 @@ written.push(
       telephone: "+" + C.whatsapp,
       sameAs: [C.instagram.url],
       ...(siteUrlReady ? { url: C.siteUrl + "/", image: abs("assets/img/brand/og-image.jpg") } : {}),
-      ...(C.business.address ? { address: C.business.address } : {}),
+      ...(C.business.address ? { address: { "@type": "PostalAddress", streetAddress: "Shopping Oiapoque, Box M19/20", addressLocality: "Belo Horizonte", addressRegion: "MG", addressCountry: "BR" } } : {}),
+      ...(C.business.payment ? { paymentAccepted: "Dinheiro, Pix, Cartão de débito, Cartão de crédito" } : {}),
     })}</script>`,
     body: (rel) => {
       const big = cats.slice(0, 4);
@@ -266,7 +267,7 @@ written.push(
     <p class="hero__lead">Encontre seus favoritos, personalize seus produtos e monte uma combinação do seu jeito.</p>
     <div class="btn-row">
       <a class="btn btn--light btn--lg" href="catalogo/">Explorar catálogo</a>
-      <a class="btn btn--outline-light btn--lg" href="catalogo/?pers=1">Ver personalizados</a>
+      ${hasOffers() ? `<a class="btn btn--outline-light btn--lg" href="ofertas/">Ver ofertas</a>` : `<a class="btn btn--outline-light btn--lg" href="catalogo/?pers=1">Ver personalizados</a>`}
     </div>
   </div>
   <a class="hero__handle" href="${C.instagram.url}" target="_blank" rel="noopener">${esc(C.instagram.handle)}</a>
@@ -322,7 +323,7 @@ written.push(
       <h2 class="custom__title" id="custom-title">Sua ideia. Seu estilo. Seu produto.</h2>
       <p class="custom__text">Escolha o acessório, defina os detalhes e conte para nós como você imagina o resultado. Fotos e artes são enviadas na conversa do WhatsApp, e a loja confirma tudo antes de produzir.</p>
       ${kinds.length ? `<ul class="custom__kinds">${kinds.map(([l, id]) => `<li><a href="categorias/${id}/?pers=1">${esc(l)}</a></li>`).join("")}</ul>` : ""}
-      <div class="btn-row" style="margin-top:var(--space-6)"><a class="btn btn--primary btn--lg" href="catalogo/?pers=1">Descobrir personalizados</a></div>
+      <div class="btn-row" style="margin-top:var(--space-6)"><a class="btn btn--primary btn--lg" href="catalogo/">Escolher meu produto</a></div>
     </div>
   </div>
 </section>
@@ -484,8 +485,16 @@ if (hasOffers()) {
       pageType: "catalog",
       current: "ofertas",
       title: "Ofertas",
-      description: "Produtos com preço promocional na Fanny Acessórios.",
-      body: (rel) => `<div class="container"><header class="page-head"><h1>Ofertas</h1></header><section class="listing" data-listing data-scope="all" aria-label="Ofertas"></section></div>${jsError}`,
+      description: "Copos, canecas e garrafas térmicas com preço promocional na Fanny Acessórios.",
+      body: (rel) => `<div class="container">
+  <header class="page-head">
+    <nav class="crumbs" aria-label="Você está em"><ol><li><a href="${rel}">Início</a></li><li aria-current="page">Ofertas</li></ol></nav>
+    <h1>Ofertas</h1>
+    <p>Produtos com preço promocional. A personalização, quando houver, é somada ao preço da oferta.</p>
+  </header>
+  <section class="listing" data-listing data-scope="offers" aria-label="Ofertas"></section>
+</div>
+${jsError}`,
     })
   );
 } else if (existsSync(offersDir)) rmSync(offersDir, { recursive: true });
@@ -549,6 +558,7 @@ written.push(
   <div class="about">
     <div class="prose">
       <p>A Fanny Acessórios reúne estilo, praticidade e personalização. Na vitrine você encontra copos, canecas, garrafas e capas para celular, lisos ou feitos com o seu nome, a sua frase ou a sua arte.</p>
+      ${C.business.address ? `<p>A loja fica no ${esc(C.business.address)}${C.business.hours ? `, aberta ${esc(C.business.hours.charAt(0).toLowerCase() + C.business.hours.slice(1))}` : ""}. ${esc(C.business.deliveryInfo || "")}</p>` : ""}
       <p>A ideia é simples: você escolhe com calma no site, monta um carrinho com tudo o que quer e manda o pedido pronto pelo WhatsApp. A loja confirma disponibilidade, valores e detalhes da personalização na conversa.</p>
       <h2>O que você encontra aqui</h2>
       <ul class="values">
@@ -563,8 +573,8 @@ written.push(
     </div>
     <div class="about__photos">
       <img src="${rel}assets/img/editorial/vitrine-capinhas.webp" alt="Painel da loja com dezenas de capinhas coloridas" width="1600" height="900" loading="lazy">
-      <img src="${rel}assets/img/products/garrafa-rosa.webp" alt="Garrafa rosa em destaque na vitrine de vidro" width="800" height="800" loading="lazy">
-      <img src="${rel}assets/img/products/capinhas-coloridas.webp" alt="Capinhas coloridas penduradas no painel azul" width="800" height="800" loading="lazy">
+      <img src="${rel}assets/img/editorial/vitrine-garrafa-rosa.webp" alt="Garrafa rosa em destaque na vitrine de vidro" width="800" height="800" loading="lazy">
+      <img src="${rel}assets/img/editorial/vitrine-capinhas-coloridas.webp" alt="Capinhas coloridas penduradas no painel azul" width="800" height="800" loading="lazy">
     </div>
   </div>
 </div>`,
@@ -579,7 +589,7 @@ written.push(
     pageType: "contact",
     current: "contato",
     title: "Contato",
-    description: `Fale com a Fanny Acessórios pelo WhatsApp ${C.whatsappDisplay} ou pelo Instagram ${C.instagram.handle}.`,
+    description: `Fale com a Fanny Acessórios pelo WhatsApp ${C.whatsappDisplay}${C.business.address ? `. Loja no ${C.business.address}` : ""}. Entregamos para todo o Brasil.`,
     body: (rel) => `<div class="container">
   <header class="page-head">
     <nav class="crumbs" aria-label="Você está em"><ol><li><a href="${rel}">Início</a></li><li aria-current="page">Contato</li></ol></nav>
@@ -599,8 +609,18 @@ written.push(
       <p>Vitrine, novidades e ideias de personalização.</p>
       <a class="btn btn--ghost" href="${C.instagram.url}" target="_blank" rel="noopener">${ICON.instagram}<span>Abrir o perfil</span></a>
     </section>
-    ${b.address || b.hours ? `<section class="contact-card" aria-labelledby="ct-loja"><h2 id="ct-loja">Loja</h2>${b.address ? `<p>${esc(b.address)}</p>` : ""}${b.hours ? `<p>${esc(b.hours)}</p>` : ""}</section>` : ""}
+    ${b.address || b.hours ? `<section class="contact-card" aria-labelledby="ct-loja"><h2 id="ct-loja">Loja física</h2>${b.address ? `<p class="contact-card__big">${esc(b.address.split(",")[0])}</p><p>${esc(b.address.split(",").slice(1).join(",").trim())}</p>` : ""}${b.hours ? `<p>${esc(b.hours)}</p>` : ""}${b.address ? `<a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.mapsQuery || b.address)}" target="_blank" rel="noopener">Ver no mapa</a>` : ""}</section>` : ""}
   </div>
+  ${[b.pickup, b.deliveryInfo, b.payment, b.exchangePolicy, b.customLeadTime, b.minimumOrder].some(Boolean) ? `<section class="how" id="como-comprar" aria-labelledby="cc-title">
+    <h2 id="cc-title">Como comprar</h2>
+    <ul class="values">
+      ${b.pickup ? `<li><span class="mega__icon">${ICON.home}</span><strong>Retirada</strong><span>${esc(b.pickup)}</span></li>` : ""}
+      ${b.deliveryInfo ? `<li><span class="mega__icon">${ICON.bag}</span><strong>Entrega</strong><span>${esc(b.deliveryInfo)}</span></li>` : ""}
+      ${b.payment ? `<li><span class="mega__icon">${ICON.check}</span><strong>Pagamento</strong><span>${esc(b.payment)}</span></li>` : ""}
+      ${b.customLeadTime || b.minimumOrder ? `<li><span class="mega__icon">${ICON.sparkle}</span><strong>Personalizados</strong><span>${esc([b.customLeadTime, b.minimumOrder].filter(Boolean).join(" "))}</span></li>` : ""}
+      ${b.exchangePolicy ? `<li><span class="mega__icon">${ICON.info}</span><strong>Trocas</strong><span>${esc(b.exchangePolicy)}</span></li>` : ""}
+    </ul>
+  </section>` : ""}
   <div class="contact-aside">
     ${mascotImg(rel, "", 96, 140)}
     <p>Já sabe o que quer? Monte o carrinho no site: a mensagem do pedido chega organizada, com cada produto, opção e quantidade.</p>

@@ -18,13 +18,19 @@ export function buildOrderMessage(summary, customer = {}) {
   if (name) out.push(`*Cliente:* ${name}`);
   const contact = (customer.contact || "").trim();
   if (contact) out.push(`*Preferência de contato:* ${contact}`);
-  if (name || contact) out.push("");
+  const receive = (customer.receive || "").trim();
+  if (receive) out.push(`*Recebimento:* ${receive}`);
+  const payment = (customer.payment || "").trim();
+  if (payment) out.push(`*Pagamento:* ${payment}`);
+  if (name || contact || receive || payment) out.push("");
 
   summary.items.forEach((item, i) => {
     out.push(`*${i + 1}. ${item.product.name}*`);
     for (const d of item.details) out.push(`- ${d.label}: ${d.value}`);
     out.push(`- Quantidade: ${item.qty}`);
-    if (item.pending) {
+    if (item.pending && item.partialUnit !== null) {
+      out.push(`- Valor unitário: ${formatPrice(item.partialUnit)} + ${item.pendingWhat} (a confirmar)`);
+    } else if (item.pending) {
       out.push(`- Valor: a confirmar (${item.pendingReason.toLowerCase()})`);
     } else {
       out.push(`- Valor unitário: ${formatPrice(item.unit)}`);
@@ -44,7 +50,7 @@ export function buildOrderMessage(summary, customer = {}) {
   } else {
     out.push("*Valores:* a confirmar pela loja.");
   }
-  out.push(M.deliveryNote);
+  if ((customer.receive || "") !== "Retirar na loja") out.push(M.deliveryNote);
 
   const notes = (customer.notes || "").trim();
   if (notes) out.push("", `*Observações:* ${notes}`);
