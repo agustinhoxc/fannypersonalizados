@@ -1,0 +1,62 @@
+/* =========================================================
+   CARRINHO — itens, totais e envio pelo WhatsApp
+   ========================================================= */
+.lines { list-style: none; }
+.line {
+  display: grid; grid-template-columns: 80px 1fr auto; gap: 4px 14px;
+  padding-block: 16px; border-bottom: 1px solid var(--color-border);
+}
+.line:last-child { border-bottom: 0; }
+.line__thumb { width: 80px; height: 80px; border-radius: 12px; overflow: hidden; background: var(--color-surface-2); grid-row: span 2; }
+.line__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.line__info { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.line__name { font-size: var(--text-base); font-weight: 600; line-height: 1.3; }
+.line__name a { text-decoration: none; }
+.line__name a:hover { text-decoration: underline; }
+.line__opts { margin: 0; display: grid; gap: 1px; font-size: var(--text-sm); }
+.line__opts div { display: flex; gap: 6px; min-width: 0; }
+.line__opts dt { color: var(--color-text-muted); flex: none; }
+.line__opts dt::after { content: ":"; }
+.line__opts dd { margin: 0; overflow-wrap: anywhere; }
+.line__unit, .line__qty { font-size: var(--text-sm); color: var(--color-text-muted); }
+.line__actions { display: flex; align-items: center; gap: 6px 10px; flex-wrap: wrap; margin-top: 6px; }
+.line__total { font-weight: 600; text-align: right; white-space: nowrap; font-size: var(--text-sm); }
+
+.totals { display: grid; gap: 8px; }
+.totals__row { display: flex; justify-content: space-between; gap: 12px; font-size: var(--text-sm); }
+.totals__row--main { font-size: var(--text-base); padding-top: 8px; border-top: 1px solid var(--color-border); }
+.totals__row--main strong { font-size: var(--text-lg); }
+.totals__note { font-size: var(--text-xs); color: var(--color-text-muted); }
+.drawer .totals__note { display: none; }
+.drawer .line__actions { gap: 4px; }
+.cartpage__summary .btn--lg { font-size: var(--text-base); }
+
+/* ---------- Página do carrinho ---------- */
+.cartpage { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: var(--space-7); align-items: start; }
+.cartpage.is-empty { grid-template-columns: 1fr; }
+.cartpage__head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; padding-bottom: var(--space-3); border-bottom: 1px solid var(--color-border); }
+.cartpage__count { color: var(--color-text-muted); font-size: var(--text-sm); }
+.confirm__ask { display: inline-flex; align-items: center; gap: 8px; font-size: var(--text-sm); flex-wrap: wrap; }
+.lines--page .line { grid-template-columns: 104px 1fr auto; padding-block: 20px; }
+.lines--page .line__thumb { width: 104px; height: 104px; }
+.cartpage__summary {
+  position: sticky; top: calc(var(--header-h) + 62px);
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card);
+  padding: var(--space-5); display: grid; gap: var(--space-5);
+}
+.cartpage__summary > h2 { font-family: var(--font-display); font-style: italic; font-size: var(--text-lg); }
+.checkout { display: grid; gap: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+.checkout__intro, .checkout__fine { font-size: var(--text-xs); color: var(--color-text-muted); }
+.checkout .pills { gap: 8px; }
+.checkout .pill span { min-height: 40px; padding: 0 12px; }
+.preview summary { cursor: pointer; font-size: var(--text-sm); font-weight: 500; color: var(--color-wall); min-height: 32px; display: flex; align-items: center; }
+.preview pre {
+  white-space: pre-wrap; word-break: break-word; font-family: var(--font-ui); font-size: var(--text-xs); line-height: 1.55;
+  background: #E7F5EC; border-radius: 10px; padding: 12px 14px; max-height: 320px; overflow: auto; margin: 8px 0;
+}
+.sent { border-radius: var(--radius-card); background: var(--color-accent-soft); padding: var(--space-5); display: grid; gap: var(--space-3); outline: none; }
+.sent h3 { display: flex; align-items: center; gap: 8px; font-size: var(--text-base); color: var(--color-accent-strong); }
+.sent p { font-size: var(--text-sm); }
+
+.how { margin-top: var(--space-8); padding: var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-card); }
+.how h2 { font-family: var(--font-display); font-style: italic; font-size: var(--text-xl); margin-bottom: var(--space-5); }

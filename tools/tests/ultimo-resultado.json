@@ -1,0 +1,242 @@
+[
+ {
+  "teste": "Formulário vazio mostra erros e não adiciona",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Gaveta abre após adicionar",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Subtotal correto (1 × R$ 49,90)",
+  "ok": true,
+  "detalhe": "Seu carrinho\nGarrafa colorida com alça\nCor\nVerde-água\n\nR$ 49,90 cada\n\nEditar\nRemover\n\nR$ 49,90\n\nUnidades\n1\nTotal dos produtos\nR$ 49,90\nRevisar e enviar pedido\nContinuar comprando"
+ },
+ {
+  "teste": "4 produtos de categorias diferentes no carrinho",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Personalização preservada (modelo, cor, texto)",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Opção oculta não vai para o carrinho (copo sem personalização)",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Duas configurações distintas viram duas linhas",
+  "ok": true,
+  "detalhe": "[{'id': 'capa-personalizada', 'options': {'marca': 'Samsung', 'modelo': 'Galaxy A15', 'base': 'Colorida', 'cor': 'Rosa-chiclete', 'estilo': 'Nome', 'texto': 'Maria'}, 'qty': 2, 'key': 'capa-personalizada::[[\"base\",\"Colorida\"],[\"cor\",\"Rosa-chiclete\"],[\"estilo\",\"Nome\"],[\"marca\",\"Samsung\"],[\"modelo\",\"Galaxy A15\"],[\"texto\",\"Maria\"]]', 'addedAt': 1792001231812}, {'id': 'capa-personalizada', 'options': {'marca': 'Samsung', 'modelo': 'Galaxy A15', 'base': 'Colorida', 'cor': 'Rosa-chiclete', 'estilo': 'Nome', 'texto': 'João'}, 'qty': 1, 'key': 'capa-personalizada::[[\"base\",\"Colorida\"],[\"cor\",\"Rosa-chiclete\"],[\"estilo\",\"Nome\"],[\"marca\",\"Samsung\"],[\"modelo\",\"Galaxy A15\"],[\"texto\",\"João\"]]', 'addedAt': 1792001232563}]"
+ },
+ {
+  "teste": "Configuração idêntica soma quantidade (Maria = 2)",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Aumentar para 3 → subtotal R$ 149,70",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Diminuir para 2 → subtotal R$ 99,80",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Quantidade inválida é corrigida (-5 → 1, 2.7 → 2)",
+  "ok": true,
+  "detalhe": "1,2"
+ },
+ {
+  "teste": "Não permite quantidade abaixo de 1",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Total geral correto (R$ 339,20)",
+  "ok": true,
+  "detalhe": "Unidades\n8\nTotal dos produtos\nR$ 339,20\n\nEntrega e pagamento são combinados no atendimento."
+ },
+ {
+  "teste": "Carrinho mantém itens após recarregar",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Contador do cabeçalho reflete as unidades",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Total recalculado após remover (R$ 279,40)",
+  "ok": true,
+  "detalhe": "Unidades\n6\nTotal dos produtos\nR$ 279,40\n\nEntrega e pagamento são combinados no atendimento."
+ },
+ {
+  "teste": "Mostra subtotal conhecido e aviso de valor a confirmar, sem total final",
+  "ok": true,
+  "detalhe": "Unidades\n7\nSubtotal com preço definido\nR$ 279,40\n\n1 item tem valor a confirmar pela loja, por isso não mostramos um total final.\n\nEntrega e pagamento são combinados no atendimento."
+ },
+ {
+  "teste": "Editar opções a partir do carrinho substitui o item",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Link usa o número 5531992919133",
+  "ok": true,
+  "detalhe": "https://wa.me/5531992919133?text=Ol%C3%A1%2C%20Fanny!%20Gost"
+ },
+ {
+  "teste": "Mensagem contém itens, opções, quantidades e observações",
+  "ok": true,
+  "detalhe": "[]"
+ },
+ {
+  "teste": "Mensagem não inventa frete/desconto",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Texto codificado (sem espaços/quebras crus na URL)",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Mostra que o pedido foi PREPARADO e precisa ser enviado",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Não afirma que a loja recebeu/confirmou",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Carrinho NÃO é limpo automaticamente",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Sugestões aparecem no cabeçalho",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Página de busca lista resultados para 'garrafa'",
+  "ok": true,
+  "detalhe": "4"
+ },
+ {
+  "teste": "Estado sem resultados com saída para o WhatsApp",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Busca ignora acentos ('termica' encontra 'térmica')",
+  "ok": true,
+  "detalhe": "['Garrafa térmica de tampa rosqueável', 'Garrafa térmica preta']"
+ },
+ {
+  "teste": "Filtro por tipo altera resultados",
+  "ok": true,
+  "detalhe": "4->2"
+ },
+ {
+  "teste": "Filtro fica na URL",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Chip remove o filtro",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Filtro por cor",
+  "ok": true,
+  "detalhe": "['Garrafa térmica de tampa rosqueável']"
+ },
+ {
+  "teste": "Ordenação alfabética",
+  "ok": true,
+  "detalhe": "['Caneca colorida', 'Caneca personalizada', 'Capa personalizada com foto ou arte']"
+ },
+ {
+  "teste": "Catálogo lista os 10 produtos sem botão 'Mostrar mais' desnecessário",
+  "ok": true,
+  "detalhe": "10 True"
+ },
+ {
+  "teste": "Link 'Ver personalizados' filtra só personalizáveis",
+  "ok": true,
+  "detalhe": "['Copo térmico com tampa', 'Copo com canudo', 'Caneca personalizada', 'Garrafa personalizada', 'Capa personalizada com nome ou frase', 'Capa personalizada com foto ou arte']"
+ },
+ {
+  "teste": "Sem erros de JavaScript no desktop",
+  "ok": true,
+  "detalhe": "[]"
+ },
+ {
+  "teste": "Sem preços: total 'A confirmar', sem R$ inventado",
+  "ok": true,
+  "detalhe": "Unidades\n1\nTotal\nA confirmar\n\nOs itens do carrinho têm preço sob consulta. A Fanny responde com os valores pelo WhatsApp.\n\nEntrega e pagamento são combinados no atendimento."
+ },
+ {
+  "teste": "Prévia da mensagem diz 'Valores: a confirmar'",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Produto inexistente mostra página amigável",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Barra inferior visível no celular",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Filtros em painel no celular funcionam",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Botão de envio não fica coberto pela barra inferior",
+  "ok": true,
+  "detalhe": "{'x': 41.609375, 'y': 433.078125, 'width': 306.78125, 'height': 54} {'x': 0, 'y': 780, 'width': 390, 'height': 64}"
+ },
+ {
+  "teste": "Mensagem no celular inclui modelo e cor",
+  "ok": true,
+  "detalhe": ""
+ },
+ {
+  "teste": "Sem rolagem horizontal no carrinho (390 px)",
+  "ok": true,
+  "detalhe": "390"
+ },
+ {
+  "teste": "Sem erros de JavaScript no celular",
+  "ok": true,
+  "detalhe": "[]"
+ },
+ {
+  "teste": "Todas as páginas, links internos e arquivos respondem 200 (60 URLs)",
+  "ok": true,
+  "detalhe": "[]"
+ },
+ {
+  "teste": "404.html existe (GitHub Pages usa automaticamente)",
+  "ok": true,
+  "detalhe": ""
+ }
+]

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gerado por tools/build.mjs. Ajuste siteUrl em assets/js/config.js e rode o gerador de novo. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/catalogo/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/categorias/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/categorias/copos/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/categorias/canecas/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/categorias/garrafas/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/categorias/capas-personalizadas/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=copo-termico-com-tampa</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=copo-com-canudo</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=caneca-personalizada</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=caneca-colorida</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=garrafa-colorida-com-alca</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=garrafa-termica-rosa</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=garrafa-termica-preta</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=garrafa-personalizada</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=capa-personalizada</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/produto/?id=capa-com-foto-ou-arte</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/sobre/</loc></url>
+  <url><loc>https://SEU-USUARIO.github.io/fanny-acessorios/contato/</loc></url>
+</urlset>

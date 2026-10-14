@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /carrinho/
+
+Sitemap: https://SEU-USUARIO.github.io/fanny-acessorios/sitemap.xml
